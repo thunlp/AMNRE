@@ -23,6 +23,8 @@ Run `python train.py` in corresponding directory to train the model. It will out
 
 Run `python draw.py <label file's name> <prediction result file's name> <output image's name>` to get the precision-recall curve for one specific prediction result.
 
+If you want to tune the hyper parameters, see the `src/constant.py` and change the parameters defined in the file.
+
 ## Cite
 
 If the codes help you, please cite the following paper:
