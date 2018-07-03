@@ -72,9 +72,9 @@ class item:
                 resVec.append(wordTable[self.lang][x])
             else:
                 resVec.append(0)
-        if len(resVec)>SenLen:
-            return resVec[0:SenLen]
-        for i in range(0,SenLen-len(resVec)):
+        if len(resVec)>SenLen[self.lang]:
+            return resVec[0:SenLen[self.lang]]
+        for i in range(0,SenLen[self.lang]-len(resVec)):
             resVec.append(0)
         return resVec
     def gen_position(self,enum):
@@ -92,16 +92,16 @@ class item:
                     baseP=i
             if baseP==0:
                 return None
-        self.ep[enum-1]=min(baseP,SenLen-3)
+        self.ep[enum-1]=min(baseP,SenLen[self.lang]-3)
         baseP=min(baseP,SenLen)
         resVec=[]
-        for i in range(0,min(SenLen,len(self.sentence))):
-            resVec.append(i-baseP+SenLen)
-        if len(resVec)>SenLen:
+        for i in range(0,min(SenLen[self.lang],len(self.sentence))):
+            resVec.append(i-baseP+SenLen[self.lang])
+        if len(resVec)>SenLen[self.lang]:
             print("???")
             print(len(resVec))
             return None #to be discussed
-        for i in range(0,SenLen-len(resVec)):
+        for i in range(0,SenLen[self.lang]-len(resVec)):
             resVec.append(resVec[len(resVec)-1])
         return resVec
 class instance:
@@ -152,8 +152,6 @@ class dataset:
                     if t.pos1 and t.pos2:
                         self.sentences[i].append(t)
         self.get_instances()
-        if not forTest:
-            self.augment()
         self.datas=np.array(self.instances)
         print("load ended")
     def get_instances(self):
@@ -174,12 +172,6 @@ class dataset:
                     mx=len(x.items[0])+len(x.items[1])
                     cho=x
         cho.dump()
-    def augment(self):
-        L=len(self.instances)
-        for i in range(0,L):
-            if self.instances[i].r!=0:
-                for t in range(0,AugTimes):
-                    self.instances.append(self.instances[i])
     def pre_batchs(self):
         datas=self.datas
         #np.array(self.instances)
@@ -333,9 +325,9 @@ def load_init():
         for x in r2I:
             x=x.split()
             relationId[x[0]]=int(x[1])
-    #load_vocab("vec_en_str.out",0)
-    #load_vocab("vec_zh.out",1)
-    load_vo2()
+    load_vocab("vec_en.out",0)
+    load_vocab("vec_zh.out",1)
+    #load_vo2()
 def outneid():
     f=open(dataPath+"neId.txt","w")
     for x in neId:
