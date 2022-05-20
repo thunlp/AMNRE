@@ -15,7 +15,7 @@ Source code and dataset for COLING2018 paper "Adversarial Multi-lingual Neural R
 
 We use the same dataset and pre-trained word embedding as the [MNRE](https://github.com/thunlp/MNRE). You can download the raw data in [this page](https://cloud.tsinghua.edu.cn/f/7dbd74f9e9bc45ffb5f9/?dl=1). You need to download it to the `Data/` path and use init.py in `CNN/src/` to preprocess it.
 
-We also provide the preprocessed .npy format data in [this page](https://cloud.tsinghua.edu.cn/f/193ba7015c4047d6868a/?dl=1). Download it to the `Data/` path and unpack it, then you can run the code.
+We also provide the preprocessed .npy format data in [this page](https://cloud.tsinghua.edu.cn/f/266486e701a3462fa9a3/?dl=1). Download it to the `Data/` path and unpack it, then you can run the code.
 
 ## Run
 
